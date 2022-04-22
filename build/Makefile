@@ -1376,6 +1376,32 @@ dynamic_reconfigure_generate_messages_eus/fast:
 	$(MAKE) -f gazebo_ros_tracked_vehicle_interface/CMakeFiles/dynamic_reconfigure_generate_messages_eus.dir/build.make gazebo_ros_tracked_vehicle_interface/CMakeFiles/dynamic_reconfigure_generate_messages_eus.dir/build
 .PHONY : dynamic_reconfigure_generate_messages_eus/fast
 
+#=============================================================================
+# Target rules for targets named boilerplate_motor_plugin
+
+# Build rule for target.
+boilerplate_motor_plugin: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 boilerplate_motor_plugin
+.PHONY : boilerplate_motor_plugin
+
+# fast build rule for target.
+boilerplate_motor_plugin/fast:
+	$(MAKE) -f simplemotorpluginexample_gazebo/CMakeFiles/boilerplate_motor_plugin.dir/build.make simplemotorpluginexample_gazebo/CMakeFiles/boilerplate_motor_plugin.dir/build
+.PHONY : boilerplate_motor_plugin/fast
+
+#=============================================================================
+# Target rules for targets named gazebo_ros_gencfg
+
+# Build rule for target.
+gazebo_ros_gencfg: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 gazebo_ros_gencfg
+.PHONY : gazebo_ros_gencfg
+
+# fast build rule for target.
+gazebo_ros_gencfg/fast:
+	$(MAKE) -f simplemotorpluginexample_gazebo/CMakeFiles/gazebo_ros_gencfg.dir/build.make simplemotorpluginexample_gazebo/CMakeFiles/gazebo_ros_gencfg.dir/build
+.PHONY : gazebo_ros_gencfg/fast
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -1482,6 +1508,8 @@ help:
 	@echo "... tf2_msgs_generate_messages_py"
 	@echo "... tf2_msgs_generate_messages_nodejs"
 	@echo "... dynamic_reconfigure_generate_messages_eus"
+	@echo "... boilerplate_motor_plugin"
+	@echo "... gazebo_ros_gencfg"
 .PHONY : help
 
 

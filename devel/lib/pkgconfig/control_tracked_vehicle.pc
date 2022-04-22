@@ -1,0 +1,8 @@
+prefix=/home/aantonov/project2/devel
+
+Name: control_tracked_vehicle
+Description: Description of control_tracked_vehicle
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

@@ -448,6 +448,7 @@
                         <lower>-1e+16</lower>
                         <upper>1e+16</upper>
                         <effort>1000</effort>
+                        <velocity>0.57</velocity>
                     </limit>
                     <dynamics>
                         <spring_reference>0</spring_reference>
@@ -616,6 +617,7 @@
                         <lower>-1e+16</lower>
                         <upper>1e+16</upper>
                         <effort>1000</effort>
+                        <velocity>0.5</velocity>
                     </limit>
                     <dynamics>
                         <spring_reference>0</spring_reference>
@@ -671,8 +673,7 @@
             </plugin> 
 
             
-
-            <plugin name='control_flippers' filename='libKeysToJointsPlugin.so'>
+            <!--<plugin name='control_flippers' filename='libKeysToJointsPlugin.so'>
 		     i/up 
 		    <map key='105' joint='simple_tracked::front_right_flipper_j' scale='-0.01' type='position' kp='1000' ki='0' kd='10'/>
 		    <map key='105' joint='simple_tracked::front_left_flipper_j' scale='-0.01' type='position' kp='1000' ki='0' kd='10'/>
@@ -680,19 +681,42 @@
 		     k/down 
 		    <map key='107' joint='simple_tracked::front_right_flipper_j' scale='0.01' type='position' kp='1000' ki='0' kd='10'/>
 		    <map key='107' joint='simple_tracked::front_left_flipper_j' scale='0.01' type='position' kp='1000' ki='0' kd='10'/>
-            </plugin>
+            </plugin>-->
 
-            
+
+           <plugin name="gazebo_ros_angle_flippers_3" filename="libboilerplate_motor_plugin.so">
+			<actuatorJoint>front_left_flipper_j</actuatorJoint>
+			<cmdPosTopic>angle_flippers</cmdPosTopic>
+			<maxTorque>15</maxTorque>
+			<posPidPGain>1000</posPidPGain>
+			<posPidIGain>0.01</posPidIGain>
+			<posPidDGain>10</posPidDGain>
+			<anglePosTopic>angle_info</anglePosTopic>
+			<posPidIMin>0</posPidIMin>
+			<posPidIMax>0.01</posPidIMax>
+           </plugin>
+
+           <plugin name="gazebo_ros_angle_flippers_4" filename="libboilerplate_motor_plugin.so">
+			<actuatorJoint>front_right_flipper_j</actuatorJoint>
+			<cmdPosTopic>angle_flippers</cmdPosTopic>
+			<maxTorque>15</maxTorque>
+			<posPidPGain>1000</posPidPGain>
+			<posPidIGain>0.01</posPidIGain>
+			<posPidDGain>10</posPidDGain>
+			<anglePosTopic>angle_info</anglePosTopic>
+			<posPidIMin>0</posPidIMin>
+			<posPidIMax>0.01</posPidIMax>
+           </plugin>
         </model>
 
         <model name='stairs_very_simple'>
             <pose frame=''>0 0 0 0 0 0</pose>
             <link name='Stairs_3'>
                 <visual name='Stairs_3_Visual_0'>
-                    <pose frame=''>0 -0.6625 0.05 0 -0 0</pose>
+                    <pose frame=''>0 -0.6625 0.1 0 -0 0</pose>
                     <geometry>
                         <box>
-                            <size>2 5 0.1</size>
+                            <size>2 5 0.2</size>
                         </box>
                     </geometry>
                     <material>
@@ -709,10 +733,10 @@
                 <collision name='Stairs_3_Collision_0'>
                     <geometry>
                         <box>
-                            <size>2 5 0.1</size>
+                            <size>2 5 0.2</size>
                         </box>
                     </geometry>
-                    <pose frame=''>0 -0.6625 0.05 0 -0 0</pose>
+                    <pose frame=''>0 -0.6625 0.1 0 -0 0</pose>
                 </collision>
             </link>
             <static>1</static>

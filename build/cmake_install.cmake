@@ -132,7 +132,9 @@ if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
   include("/home/aantonov/project2/build/gtest/cmake_install.cmake")
   include("/home/aantonov/project2/build/project2/cmake_install.cmake")
+  include("/home/aantonov/project2/build/control_flippers_1/cmake_install.cmake")
   include("/home/aantonov/project2/build/gazebo_ros_tracked_vehicle_interface/cmake_install.cmake")
+  include("/home/aantonov/project2/build/simplemotorpluginexample_gazebo/cmake_install.cmake")
 
 endif()
 

@@ -1,0 +1,10 @@
+<launch>
+
+<arg name="model" default="$(find project2)/world/tracked_vehicle_simple.xacro"/>
+
+
+<include file="$(find project2)/launch/gazebo.launch">
+  <arg name="model" value="$(arg model)"/>
+</include>
+ 
+</launch>

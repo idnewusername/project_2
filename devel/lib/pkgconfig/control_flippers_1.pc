@@ -1,0 +1,8 @@
+prefix=/home/aantonov/project2/devel
+
+Name: control_flippers_1
+Description: Description of control_flippers_1
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

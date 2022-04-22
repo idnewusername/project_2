@@ -1,0 +1,8 @@
+prefix=/home/aantonov/project2/install
+
+Name: simplemotorpluginexample_gazebo
+Description: Description of simplemotorpluginexample_gazebo
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: gazebo_ros gazebo_plugins roscpp std_msgs sensor_msgs
