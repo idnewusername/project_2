@@ -18,10 +18,10 @@ def start():
     while not rospy.is_shutdown():
       if nachalo == True:
          if param[2] == "angle_1":
-            if param[0] > (-0.6):
+            if param[0] > (-0.5):
                param[0]+=(-0.02)
 
-            if param[0] < (-0.6):
+            if param[0] < (-0.5):
                   param[2] = "angle_0"
                   print(param[2])
 
@@ -31,11 +31,11 @@ def start():
 
 
          elif param[2] == "angle_2":
-            if param[0] < (0.25):
-               param[0]+=(0.015)
+            if param[0] < (0.3):
+               param[0]+=(0.01)
                #print(param[0])
 
-            if param[0] > (0.25):
+            if param[0] > (0.3):
                param[2] = "angle_0"
                print(param[2])
                #rospy.sleep(0.7)
@@ -44,18 +44,18 @@ def start():
                print(param[1])
 
          elif param[2] == "angle_3":
-            if param[0] < (1.23):
-               param[0]+=(0.03)
+            if param[0] < (1.2):
+               param[0]+=(0.04)
                #print(param[0])
 
-            if param[0] > (1.23):
+            if param[0] > (1.2):
                param[2] = "angle_0"
                print(param[2])
 
 
          elif param[2] == "angle_4":
             if param[0] > (0):
-               param[0]+=(-0.03)
+               param[0]+=(-0.0075)
                #print(param[0])
 
             if param[0] < (0):
@@ -64,7 +64,7 @@ def start():
                print(param[2])
 
 
-         rospy.Rate(40).sleep()
+         rospy.Rate(100).sleep()
          angle.publish(param[0])
 
 
@@ -73,7 +73,7 @@ def move_f_1():
    if param[1] == "forward_1":
          end = True
          move_cmd.linear.x = 0.2
-         target_time = rospy.Time.now() + rospy.Duration.from_sec(3.5)
+         target_time = rospy.Time.now() + rospy.Duration.from_sec(3.75)
          if end == True:
             while rospy.Time.now() < target_time:
                      move.publish(move_cmd)
@@ -87,7 +87,7 @@ def move_f_1():
 
    if param[1] == "forward_2":
         mid = True
-        move_cmd.linear.x = 0.1
+        move_cmd.linear.x = 0.15
         move.publish(move_cmd)
         #target_time_1 = rospy.Time.now() + rospy.Duration.from_sec(0.5)
         #if mid == True:
@@ -103,9 +103,9 @@ def move_f_1():
 
    if param[1] == "forward_3":
 
-        move_cmd.linear.x = 0.015
+        move_cmd.linear.x = 0.065
         check = True
-        target_time_1 = rospy.Time.now() + rospy.Duration.from_sec(3.5)
+        target_time_1 = rospy.Time.now() + rospy.Duration.from_sec(3.8)
 
         if check == True:
            while rospy.Time.now() < target_time_1:
@@ -118,7 +118,7 @@ def move_f_1():
                  param[2] = "angle_4"
 
    if param[1] == "forward_4":
-        move_cmd.linear.x = 0.9
+        move_cmd.linear.x = 0.14
         #check_1 = True
         move.publish(move_cmd)
         #rospy.sleep(0.2)

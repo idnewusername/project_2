@@ -1,0 +1,1123 @@
+#!/usr/bin/env python
+import rospy 
+import time
+from std_msgs.msg import Float32 
+from geometry_msgs.msg import Twist 
+
+angle = rospy.Publisher("/angle_flippers", Float32, queue_size=10)
+
+move = rospy.Publisher("/cmd_vel", Twist, queue_size=10)
+
+param = [0, "forward_1", "angle_1"]
+move_cmd = Twist()
+
+def start():
+
+    nachalo = True
+    rospy.init_node('control_flippers')
+    while not rospy.is_shutdown():
+         if param[2] == "angle_1":
+            if param[0] > (-0.5):
+               param[0]+=(-0.02)
+
+            if param[0] < (-0.5):
+                  param[2] = "angle_0"
+                  print(param[2])
+
+         elif param[2] == "angle_0":
+              rospy.sleep(0.7)
+              move_f_1()
+
+         elif param[2] == "angle_2":
+            if param[0] < (0.9):
+               param[0]+=(0.02)
+            if param[0] > (0.9):
+               param[2] = "angle_0"
+               print(param[2])
+               param[1] = "forward_2"
+               print(param[1])
+               rospy.sleep(4)
+
+         elif param[2] == "angle_3":
+            if param[0] > (0):
+               param[0]+=(-0.02)
+            if param[0] < (0):
+               param[2] = "angle_0"
+               print(param[2])
+
+         angle.publish(param[0])
+         rospy.Rate(30).sleep()
+
+
+def move_f_1():
+   if param[1] == "forward_1":
+         end = True
+         rate = rospy.Rate(10)
+         move_cmd.linear.x = 0.5
+         target_time = rospy.Time.now() + rospy.Duration.from_sec(1.5)
+         if end == True:
+            while rospy.Time.now() < target_time:
+                     move.publish(move_cmd)
+            else:
+                     move_cmd.linear.x = 0
+                     move.publish(move_cmd)
+                     end = False
+                     print(end)
+
+         if end == False:
+                  param[1] = "forward_0"
+                  param[2] = "angle_2"
+
+   elif param[1] == "forward_2":
+         mid = True
+         move_cmd.linear.x = 1
+         target_time_1 = rospy.Time.now() + rospy.Duration.from_sec(1)
+         if mid == True:
+            while rospy.Time.now() < target_time_1:
+                     move.publish(move_cmd)
+            else:
+                     move_cmd.linear.x = 0
+                     move.publish(move_cmd)
+                     mid = False
+                     print(mid)
+
+         if mid == False:
+                  param[1] = "forward_0"
+                  param[2] = "angle_3"
+
+
+
+if __name__ == '__main__':
+    try:
+        start()
+    except rospy.ROSInterruptException:
+        pass
+
+
+
+
+
+
+
+
+
+
+??????????????????????????????
+
+#!/usr/bin/env python
+import rospy 
+import time
+from std_msgs.msg import Float32 
+from geometry_msgs.msg import Twist 
+
+angle = rospy.Publisher("/angle_flippers", Float32, queue_size=10)
+
+move = rospy.Publisher("/cmd_vel", Twist, queue_size=10)
+
+param = [0, "forward_1", "angle_1"]
+move_cmd = Twist()
+
+def start():
+
+    nachalo = True
+    rospy.init_node('control_flippers')
+    while not rospy.is_shutdown():
+      if nachalo == True:
+         if param[2] == "angle_1":
+            if param[0] > (-0.5):
+               param[0]+=(-0.02)
+
+            if param[0] < (-0.5):
+                  param[2] = "angle_0"
+                  print(param[2])
+
+         elif param[2] == "angle_0":
+              rospy.sleep(0.7)
+              move_f_1()
+
+         elif param[2] == "angle_2":
+            if param[0] < (0.9):
+               param[0]+=(0.02)
+
+            if param[0] > (0.9):
+               param[2] = "angle_0"
+               print(param[2])
+               param[1] = "forward_0"
+               print(param[1])
+
+         #rospy.Rate(40).sleep()
+         angle.publish(param[0])
+
+
+def move_f_1():
+   if param[1] == "forward_1":
+         end = True
+         move_cmd.linear.x = 0.5
+         target_time = rospy.Time.now() + rospy.Duration.from_sec(1.5)
+         if end == True:
+            while rospy.Time.now() < target_time:
+                     move.publish(move_cmd)
+            else:
+                     end = False
+
+         if end == False:
+                  param[1] = "forward_2"
+                  param[2] = "angle_2"
+
+   if param[1] == "forward_2":
+        mid = True
+        move_cmd.linear.x = 0.08
+        target_time_1 = rospy.Time.now() + rospy.Duration.from_sec(0.5)
+        if mid == True:
+            while rospy.Time.now() < target_time_1:
+                     move.publish(move_cmd)
+            else:
+                     mid = False
+                     print(mid)
+
+        if mid == False:
+                  param[1] = "forward_0"
+                  print(param[2])
+
+
+
+
+
+if __name__ == '__main__':
+    try:
+        start()
+    except rospy.ROSInterruptException:
+        pass
+
+
+
+
+
+|||||||||||||||||монолит////////////////
+
+#!/usr/bin/env python
+import rospy 
+import time
+from std_msgs.msg import Float32 
+from geometry_msgs.msg import Twist 
+
+angle = rospy.Publisher("/angle_flippers", Float32, queue_size=10)
+
+move = rospy.Publisher("/cmd_vel", Twist, queue_size=10)
+
+param = [0, "forward_1", "angle_1"]
+move_cmd = Twist()
+
+def start():
+
+    nachalo = True
+    rospy.init_node('control_flippers')
+    while not rospy.is_shutdown():
+      if nachalo == True:
+         if param[2] == "angle_1":
+            if param[0] > (-0.5):
+               param[0]+=(-0.02)
+
+            if param[0] < (-0.5):
+                  param[2] = "angle_0"
+                  print(param[2])
+
+         elif param[2] == "angle_0":
+              rospy.sleep(0.7)
+              move_f_1()
+
+
+         elif param[2] == "angle_2":
+            if param[0] < (0.3):
+               param[0]+=(0.02)
+               #print(param[0])
+
+            if param[0] > (0.3):
+               param[2] = "angle_0"
+               print(param[2])
+               #rospy.sleep(0.7)
+               param[1] = "forward_3"
+               param[2] = "angle_3"
+               print(param[1])
+
+         elif param[2] == "angle_3":
+            if param[0] < (1.1):
+               param[0]+=(0.02)
+               #print(param[0])
+
+            if param[0] > (1.1):
+               param[2] = "angle_0"
+               print(param[2])
+
+
+         elif param[2] == "angle_4":
+            if param[0] > (0):
+               param[0]+=(-0.02)
+               #print(param[0])
+
+            if param[0] < (0):
+               param[2] = "angle_0"
+               param[1] = "forward_0"
+               print(param[2])
+
+
+         rospy.Rate(40).sleep()
+         angle.publish(param[0])
+
+
+def move_f_1():
+
+   if param[1] == "forward_1":
+         end = True
+         move_cmd.linear.x = 0.5
+         target_time = rospy.Time.now() + rospy.Duration.from_sec(1.5)
+         if end == True:
+            while rospy.Time.now() < target_time:
+                     move.publish(move_cmd)
+            else:
+                     end = False
+                     param[1] = "forward_2"
+
+         if end == False:
+                  param[2] = "angle_2"
+                  #param[1] = "forward_2"
+
+   if param[1] == "forward_2":
+        mid = True
+        move_cmd.linear.x = 0.1
+        move.publish(move_cmd)
+        #target_time_1 = rospy.Time.now() + rospy.Duration.from_sec(0.5)
+        #if mid == True:
+            #while rospy.Time.now() < target_time_1:
+                     #move.publish(move_cmd)
+            #else:
+                     #mid = False
+                     #print(mid)
+
+        #if mid == False:
+                  #param[1] = "forward_0"
+                  #print(param[2])
+
+   if param[1] == "forward_3":
+
+        move_cmd.linear.x = 0.02
+        check = True
+        target_time_1 = rospy.Time.now() + rospy.Duration.from_sec(4.5)
+
+        if check == True:
+           while rospy.Time.now() < target_time_1:
+                    move.publish(move_cmd)
+           else:
+                    check = False
+                    param[1] = "forward_4"
+
+        if check == False:
+                 param[2] = "angle_4"
+
+   if param[1] == "forward_4":
+        move_cmd.linear.x = 0.5
+        check_1 = True
+        move.publish(move_cmd)
+        #target_time_2 = rospy.Time.now() + rospy.Duration.from_sec(1)
+
+        #if check_1 == True:
+           #while rospy.Time.now() < target_time_2:
+                    #move.publish(move_cmd)
+           #else:
+                    #check_1 = False
+                    #param[1] = "forward_0"
+
+        #if check_1 == False:
+                 #param[2] = "angle_4"
+                 #param[1] = "forward_0"
+
+
+   if param[1] == "forward_0":
+        move_cmd.linear.x = 0
+        move.publish(move_cmd)
+
+
+
+
+if __name__ == '__main__':
+    try:
+        start()
+    except rospy.ROSInterruptException:
+        pass
+
+
+
+
+?????????????монолит_2\=\=\-\=-\=
+
+#!/usr/bin/env python
+import rospy 
+import time
+from std_msgs.msg import Float32 
+from geometry_msgs.msg import Twist 
+
+angle = rospy.Publisher("/angle_flippers", Float32, queue_size=10)
+
+move = rospy.Publisher("/cmd_vel", Twist, queue_size=10)
+
+param = [0, "forward_1", "angle_1"]
+move_cmd = Twist()
+
+def start():
+
+    nachalo = True
+    rospy.init_node('control_flippers')
+    while not rospy.is_shutdown():
+      if nachalo == True:
+         if param[2] == "angle_1":
+            if param[0] > (-0.5):
+               param[0]+=(-0.02)
+
+            if param[0] < (-0.5):
+                  param[2] = "angle_0"
+                  print(param[2])
+
+         elif param[2] == "angle_0":
+              rospy.sleep(0.7)
+              move_f_1()
+
+
+         elif param[2] == "angle_2":
+            if param[0] < (0.3):
+               param[0]+=(0.02)
+               #print(param[0])
+
+            if param[0] > (0.3):
+               param[2] = "angle_0"
+               print(param[2])
+               #rospy.sleep(0.7)
+               param[1] = "forward_3"
+               param[2] = "angle_3"
+               print(param[1])
+
+         elif param[2] == "angle_3":
+            if param[0] < (1.2):
+               param[0]+=(0.02)
+               #print(param[0])
+
+            if param[0] > (1.2):
+               param[2] = "angle_0"
+               print(param[2])
+
+
+         elif param[2] == "angle_4":
+            if param[0] > (0):
+               param[0]+=(-0.03)
+               #print(param[0])
+
+            if param[0] < (0):
+               param[2] = "angle_0"
+               param[1] = "forward_0"
+               print(param[2])
+
+
+         rospy.Rate(40).sleep()
+         angle.publish(param[0])
+
+
+def move_f_1():
+
+   if param[1] == "forward_1":
+         end = True
+         move_cmd.linear.x = 0.2
+         target_time = rospy.Time.now() + rospy.Duration.from_sec(4)
+         if end == True:
+            while rospy.Time.now() < target_time:
+                     move.publish(move_cmd)
+            else:
+                     end = False
+                     param[1] = "forward_2"
+
+         if end == False:
+                  param[2] = "angle_2"
+                  #param[1] = "forward_2"
+
+   if param[1] == "forward_2":
+        mid = True
+        move_cmd.linear.x = 0.1
+        move.publish(move_cmd)
+        #target_time_1 = rospy.Time.now() + rospy.Duration.from_sec(0.5)
+        #if mid == True:
+            #while rospy.Time.now() < target_time_1:
+                     #move.publish(move_cmd)
+            #else:
+                     #mid = False
+                     #print(mid)
+
+        #if mid == False:
+                  #param[1] = "forward_0"
+                  #print(param[2])
+
+   if param[1] == "forward_3":
+
+        move_cmd.linear.x = 0.015
+        check = True
+        target_time_1 = rospy.Time.now() + rospy.Duration.from_sec(3.3)
+
+        if check == True:
+           while rospy.Time.now() < target_time_1:
+                    move.publish(move_cmd)
+           else:
+                    check = False
+                    param[1] = "forward_4"
+
+        if check == False:
+                 param[2] = "angle_4"
+
+   if param[1] == "forward_4":
+        move_cmd.linear.x = 0.4
+        check_1 = True
+        move.publish(move_cmd)
+        #rospy.sleep(0.5)
+        target_time_2 = rospy.Time.now() + rospy.Duration.from_sec(1)
+
+        if check_1 == True:
+           while rospy.Time.now() < target_time_2:
+                    move.publish(move_cmd)
+           else:
+                    check_1 = False
+                    #param[1] = "forward_0"
+
+        if check_1 == False:
+                 #param[2] = "angle_4"
+                 param[1] = "forward_0"
+
+
+   if param[1] == "forward_0":
+        move_cmd.linear.x = 0
+        move.publish(move_cmd)
+
+
+
+
+if __name__ == '__main__':
+    try:
+        start()
+    except rospy.ROSInterruptException:
+        pass
+
+-=============монолит_3....=.=.=.=.=.=
+
+#!/usr/bin/env python
+import rospy 
+import time
+from std_msgs.msg import Float32 
+from geometry_msgs.msg import Twist 
+
+angle = rospy.Publisher("/angle_flippers", Float32, queue_size=10)
+
+move = rospy.Publisher("/cmd_vel", Twist, queue_size=10)
+
+param = [0, "forward_1", "angle_1"]
+move_cmd = Twist()
+
+def start():
+
+    nachalo = True
+    rospy.init_node('control_flippers')
+    while not rospy.is_shutdown():
+      if nachalo == True:
+         if param[2] == "angle_1":
+            if param[0] > (-0.5):
+               param[0]+=(-0.02)
+
+            if param[0] < (-0.5):
+                  param[2] = "angle_0"
+                  print(param[2])
+
+         elif param[2] == "angle_0":
+              rospy.sleep(0.7)
+              move_f_1()
+
+
+         elif param[2] == "angle_2":
+            if param[0] < (0.3):
+               param[0]+=(0.02)
+               #print(param[0])
+
+            if param[0] > (0.3):
+               param[2] = "angle_0"
+               print(param[2])
+               #rospy.sleep(0.7)
+               param[1] = "forward_3"
+               param[2] = "angle_3"
+               print(param[1])
+
+         elif param[2] == "angle_3":
+            if param[0] < (1.2):
+               param[0]+=(0.02)
+               #print(param[0])
+
+            if param[0] > (1.2):
+               param[2] = "angle_0"
+               print(param[2])
+
+
+         elif param[2] == "angle_4":
+            if param[0] > (0):
+               param[0]+=(-0.03)
+               #print(param[0])
+
+            if param[0] < (0):
+               param[2] = "angle_0"
+               param[1] = "forward_0"
+               print(param[2])
+
+
+         rospy.Rate(40).sleep()
+         angle.publish(param[0])
+
+
+def move_f_1():
+
+   if param[1] == "forward_1":
+         end = True
+         move_cmd.linear.x = 0.2
+         target_time = rospy.Time.now() + rospy.Duration.from_sec(4)
+         if end == True:
+            while rospy.Time.now() < target_time:
+                     move.publish(move_cmd)
+            else:
+                     end = False
+                     param[1] = "forward_2"
+
+         if end == False:
+                  param[2] = "angle_2"
+                  #param[1] = "forward_2"
+
+   if param[1] == "forward_2":
+        mid = True
+        move_cmd.linear.x = 0.1
+        move.publish(move_cmd)
+        #target_time_1 = rospy.Time.now() + rospy.Duration.from_sec(0.5)
+        #if mid == True:
+            #while rospy.Time.now() < target_time_1:
+                     #move.publish(move_cmd)
+            #else:
+                     #mid = False
+                     #print(mid)
+
+        #if mid == False:
+                  #param[1] = "forward_0"
+                  #print(param[2])
+
+   if param[1] == "forward_3":
+
+        move_cmd.linear.x = 0.015
+        check = True
+        target_time_1 = rospy.Time.now() + rospy.Duration.from_sec(3.5)
+
+        if check == True:
+           while rospy.Time.now() < target_time_1:
+                    move.publish(move_cmd)
+           else:
+                    check = False
+                    param[1] = "forward_4"
+
+        if check == False:
+                 param[2] = "angle_4"
+
+   if param[1] == "forward_4":
+        move_cmd.linear.x = 0.4
+        #check_1 = True
+        move.publish(move_cmd)
+        rospy.sleep(0.2)
+        #target_time_2 = rospy.Time.now() + rospy.Duration.from_sec(1)
+
+        #if check_1 == True:
+           #while rospy.Time.now() < target_time_2:
+                    #move.publish(move_cmd)
+           #else:
+                    #check_1 = False
+                    #param[1] = "forward_0"
+
+        #if check_1 == False:
+                 #param[2] = "angle_4"
+                 #param[1] = "forward_0"
+
+
+   if param[1] == "forward_0":
+        move_cmd.linear.x = 0
+        move.publish(move_cmd)
+
+
+
+
+if __name__ == '__main__':
+    try:
+        start()
+    except rospy.ROSInterruptException:
+        pass
+
+
+
+
+/./././././.монолит_для_15.ю.ю.ю.ю.ю.ю.ю.ю.
+
+#!/usr/bin/env python
+import rospy 
+import time
+from std_msgs.msg import Float32 
+from geometry_msgs.msg import Twist 
+
+angle = rospy.Publisher("/angle_flippers", Float32, queue_size=10)
+
+move = rospy.Publisher("/cmd_vel", Twist, queue_size=10)
+
+param = [0, "forward_1", "angle_1"]
+move_cmd = Twist()
+
+def start():
+
+    nachalo = True
+    rospy.init_node('control_flippers')
+    while not rospy.is_shutdown():
+      if nachalo == True:
+         if param[2] == "angle_1":
+            if param[0] > (-0.5):
+               param[0]+=(-0.02)
+
+            if param[0] < (-0.5):
+                  param[2] = "angle_0"
+                  print(param[2])
+
+         elif param[2] == "angle_0":
+              rospy.sleep(0.7)
+              move_f_1()
+
+
+         elif param[2] == "angle_2":
+            if param[0] < (0.3):
+               param[0]+=(0.01)
+               #print(param[0])
+
+            if param[0] > (0.3):
+               param[2] = "angle_0"
+               print(param[2])
+               #rospy.sleep(0.7)
+               param[1] = "forward_3"
+               param[2] = "angle_3"
+               print(param[1])
+
+         elif param[2] == "angle_3":
+            if param[0] < (1.2):
+               param[0]+=(0.04)
+               #print(param[0])
+
+            if param[0] > (1.2):
+               param[2] = "angle_0"
+               print(param[2])
+
+
+         elif param[2] == "angle_4":
+            if param[0] > (0):
+               param[0]+=(-0.01)
+               #print(param[0])
+
+            if param[0] < (0):
+               param[2] = "angle_0"
+               param[1] = "forward_0"
+               print(param[2])
+
+
+         rospy.Rate(100).sleep()
+         angle.publish(param[0])
+
+
+def move_f_1():
+
+   if param[1] == "forward_1":
+         end = True
+         move_cmd.linear.x = 0.2
+         target_time = rospy.Time.now() + rospy.Duration.from_sec(3.5)
+         if end == True:
+            while rospy.Time.now() < target_time:
+                     move.publish(move_cmd)
+            else:
+                     end = False
+                     param[1] = "forward_2"
+
+         if end == False:
+                  param[2] = "angle_2"
+                  #param[1] = "forward_2"
+
+   if param[1] == "forward_2":
+        mid = True
+        move_cmd.linear.x = 0.15
+        move.publish(move_cmd)
+        #target_time_1 = rospy.Time.now() + rospy.Duration.from_sec(0.5)
+        #if mid == True:
+            #while rospy.Time.now() < target_time_1:
+                     #move.publish(move_cmd)
+            #else:
+                     #mid = False
+                     #print(mid)
+
+        #if mid == False:
+                  #param[1] = "forward_0"
+                  #print(param[2])
+
+   if param[1] == "forward_3":
+
+        move_cmd.linear.x = 0.075
+        check = True
+        target_time_1 = rospy.Time.now() + rospy.Duration.from_sec(4.25)
+
+        if check == True:
+           while rospy.Time.now() < target_time_1:
+                    move.publish(move_cmd)
+           else:
+                    check = False
+                    param[1] = "forward_4"
+
+        if check == False:
+                 param[2] = "angle_4"
+
+   if param[1] == "forward_4":
+        move_cmd.linear.x = 0.1
+        #check_1 = True
+        move.publish(move_cmd)
+        rospy.sleep(0.2)
+        #target_time_2 = rospy.Time.now() + rospy.Duration.from_sec(1)
+
+        #if check_1 == True:
+           #while rospy.Time.now() < target_time_2:
+                    #move.publish(move_cmd)
+           #else:
+                    #check_1 = False
+                    #param[1] = "forward_0"
+
+        #if check_1 == False:
+                 #param[2] = "angle_4"
+                 #param[1] = "forward_0"
+
+
+   if param[1] == "forward_0":
+        move_cmd.linear.x = 0
+        move.publish(move_cmd)
+
+
+
+
+if __name__ == '__main__':
+    try:
+        start()
+    except rospy.ROSInterruptException:
+        pass
+
+
+
+
+//\/\/\/\/\/\/\/\/\/\/ монолит_для_10 =-=-=-=-=-=-=-=-=-
+
+#!/usr/bin/env python
+import rospy 
+import time
+from std_msgs.msg import Float32 
+from geometry_msgs.msg import Twist 
+
+angle = rospy.Publisher("/angle_flippers", Float32, queue_size=10)
+
+move = rospy.Publisher("/cmd_vel", Twist, queue_size=10)
+
+param = [0, "forward_1", "angle_1"]
+move_cmd = Twist()
+
+def start():
+
+    nachalo = True
+    rospy.init_node('control_flippers')
+    while not rospy.is_shutdown():
+      if nachalo == True:
+         if param[2] == "angle_1":
+            if param[0] > (-0.5):
+               param[0]+=(-0.02)
+
+            if param[0] < (-0.5):
+                  param[2] = "angle_0"
+                  print(param[2])
+
+         elif param[2] == "angle_0":
+              rospy.sleep(0.7)
+              move_f_1()
+
+
+         elif param[2] == "angle_2":
+            if param[0] < (0.3):
+               param[0]+=(0.01)
+               #print(param[0])
+
+            if param[0] > (0.3):
+               param[2] = "angle_0"
+               print(param[2])
+               #rospy.sleep(0.7)
+               param[1] = "forward_3"
+               param[2] = "angle_3"
+               print(param[1])
+
+         elif param[2] == "angle_3":
+            if param[0] < (1.2):
+               param[0]+=(0.04)
+               #print(param[0])
+
+            if param[0] > (1.2):
+               param[2] = "angle_0"
+               print(param[2])
+
+
+         elif param[2] == "angle_4":
+            if param[0] > (0):
+               param[0]+=(-0.0075)
+               #print(param[0])
+
+            if param[0] < (0):
+               param[2] = "angle_0"
+               param[1] = "forward_0"
+               print(param[2])
+
+
+         rospy.Rate(100).sleep()
+         angle.publish(param[0])
+
+
+def move_f_1():
+
+   if param[1] == "forward_1":
+         end = True
+         move_cmd.linear.x = 0.2
+         target_time = rospy.Time.now() + rospy.Duration.from_sec(3.75)
+         if end == True:
+            while rospy.Time.now() < target_time:
+                     move.publish(move_cmd)
+            else:
+                     end = False
+                     param[1] = "forward_2"
+
+         if end == False:
+                  param[2] = "angle_2"
+                  #param[1] = "forward_2"
+
+   if param[1] == "forward_2":
+        mid = True
+        move_cmd.linear.x = 0.15
+        move.publish(move_cmd)
+        #target_time_1 = rospy.Time.now() + rospy.Duration.from_sec(0.5)
+        #if mid == True:
+            #while rospy.Time.now() < target_time_1:
+                     #move.publish(move_cmd)
+            #else:
+                     #mid = False
+                     #print(mid)
+
+        #if mid == False:
+                  #param[1] = "forward_0"
+                  #print(param[2])
+
+   if param[1] == "forward_3":
+
+        move_cmd.linear.x = 0.065
+        check = True
+        target_time_1 = rospy.Time.now() + rospy.Duration.from_sec(3.8)
+
+        if check == True:
+           while rospy.Time.now() < target_time_1:
+                    move.publish(move_cmd)
+           else:
+                    check = False
+                    param[1] = "forward_4"
+
+        if check == False:
+                 param[2] = "angle_4"
+
+   if param[1] == "forward_4":
+        move_cmd.linear.x = 0.14
+        #check_1 = True
+        move.publish(move_cmd)
+        #rospy.sleep(0.2)
+        #target_time_2 = rospy.Time.now() + rospy.Duration.from_sec(1)
+
+        #if check_1 == True:
+           #while rospy.Time.now() < target_time_2:
+                    #move.publish(move_cmd)
+           #else:
+                    #check_1 = False
+                    #param[1] = "forward_0"
+
+        #if check_1 == False:
+                 #param[2] = "angle_4"
+                 #param[1] = "forward_0"
+
+
+   if param[1] == "forward_0":
+        move_cmd.linear.x = 0
+        move.publish(move_cmd)
+
+
+
+
+if __name__ == '__main__':
+    try:
+        start()
+    except rospy.ROSInterruptException:
+        pass
+
+
+
+
+\-\-\-\-\-\-\-\-\-\-\-\-\-\. монолит_23 .ю.ю.ю.ю.ю.ю.ю.ю.ю.ю
+
+#!/usr/bin/env python
+import rospy 
+import time
+from std_msgs.msg import Float32 
+from geometry_msgs.msg import Twist 
+
+angle = rospy.Publisher("/angle_flippers", Float32, queue_size=10)
+
+move = rospy.Publisher("/cmd_vel", Twist, queue_size=10)
+
+param = [0, "forward_1", "angle_1"]
+move_cmd = Twist()
+
+def start():
+
+    nachalo = True
+    rospy.init_node('control_flippers')
+    while not rospy.is_shutdown():
+      if nachalo == True:
+         if param[2] == "angle_1":
+            if param[0] > (-0.6):
+               param[0]+=(-0.02)
+
+            if param[0] < (-0.6):
+                  param[2] = "angle_0"
+                  print(param[2])
+
+         elif param[2] == "angle_0":
+              rospy.sleep(0.7)
+              move_f_1()
+
+
+         elif param[2] == "angle_2":
+            if param[0] < (0.25):
+               param[0]+=(0.015)
+               #print(param[0])
+
+            if param[0] > (0.25):
+               param[2] = "angle_0"
+               print(param[2])
+               #rospy.sleep(0.7)
+               param[1] = "forward_3"
+               param[2] = "angle_3"
+               print(param[1])
+
+         elif param[2] == "angle_3":
+            if param[0] < (1.23):
+               param[0]+=(0.03)
+               #print(param[0])
+
+            if param[0] > (1.23):
+               param[2] = "angle_0"
+               print(param[2])
+
+
+         elif param[2] == "angle_4":
+            if param[0] > (0):
+               param[0]+=(-0.03)
+               #print(param[0])
+
+            if param[0] < (0):
+               param[2] = "angle_0"
+               param[1] = "forward_0"
+               print(param[2])
+
+
+         rospy.Rate(40).sleep()
+         angle.publish(param[0])
+
+
+def move_f_1():
+
+   if param[1] == "forward_1":
+         end = True
+         move_cmd.linear.x = 0.2
+         target_time = rospy.Time.now() + rospy.Duration.from_sec(3.5)
+         if end == True:
+            while rospy.Time.now() < target_time:
+                     move.publish(move_cmd)
+            else:
+                     end = False
+                     param[1] = "forward_2"
+
+         if end == False:
+                  param[2] = "angle_2"
+                  #param[1] = "forward_2"
+
+   if param[1] == "forward_2":
+        mid = True
+        move_cmd.linear.x = 0.1
+        move.publish(move_cmd)
+        #target_time_1 = rospy.Time.now() + rospy.Duration.from_sec(0.5)
+        #if mid == True:
+            #while rospy.Time.now() < target_time_1:
+                     #move.publish(move_cmd)
+            #else:
+                     #mid = False
+                     #print(mid)
+
+        #if mid == False:
+                  #param[1] = "forward_0"
+                  #print(param[2])
+
+   if param[1] == "forward_3":
+
+        move_cmd.linear.x = 0.015
+        check = True
+        target_time_1 = rospy.Time.now() + rospy.Duration.from_sec(3.5)
+
+        if check == True:
+           while rospy.Time.now() < target_time_1:
+                    move.publish(move_cmd)
+           else:
+                    check = False
+                    param[1] = "forward_4"
+
+        if check == False:
+                 param[2] = "angle_4"
+
+   if param[1] == "forward_4":
+        move_cmd.linear.x = 0.9
+        #check_1 = True
+        move.publish(move_cmd)
+        #rospy.sleep(0.2)
+        #target_time_2 = rospy.Time.now() + rospy.Duration.from_sec(1)
+
+        #if check_1 == True:
+           #while rospy.Time.now() < target_time_2:
+                    #move.publish(move_cmd)
+           #else:
+                    #check_1 = False
+                    #param[1] = "forward_0"
+
+        #if check_1 == False:
+                 #param[2] = "angle_4"
+                 #param[1] = "forward_0"
+
+
+   if param[1] == "forward_0":
+        move_cmd.linear.x = 0
+        move.publish(move_cmd)
+
+
+
+
+if __name__ == '__main__':
+    try:
+        start()
+    except rospy.ROSInterruptException:
+        pass
