@@ -51,8 +51,8 @@ def start():
                param[0]+=(-0.03)
 
             if param[0] < (0):
-               param[2] = "angle_0"
                param[1] = "forward_0"
+               move_f_1()
 
 
          rospy.Rate(40).sleep()

@@ -56,8 +56,8 @@ def start():
                param[0]+=(-0.03)
 
             if param[0] < (0):
-               param[2] = "angle_0"
                param[1] = "forward_0"
+               move_f_1()
 
 
          rospy.Rate(40).sleep()
@@ -139,7 +139,6 @@ def start():
 
     rospy.init_node('control_flippers')
     while not rospy.is_shutdown():
-      if nachalo == True:
          if param[2] == "angle_1":
             if param[0] > (-0.5):
                param[0]+=(-0.02)
@@ -174,8 +173,8 @@ def start():
                param[0]+=(-0.03)
 
             if param[0] < (0):
-               param[2] = "angle_0"
                param[1] = "forward_0"
+               move_f_1()
 
 
          rospy.Rate(40).sleep()
@@ -294,8 +293,8 @@ def start():
                param[0]+=(-0.01)
 
             if param[0] < (0):
-               param[2] = "angle_0"
                param[1] = "forward_0"
+               move_f_1()
 
 
          rospy.Rate(100).sleep()
@@ -324,9 +323,9 @@ def move_f_1():
 
 
    if param[1] == "forward_3":
-        move_cmd.linear.x = 0.075
+        move_cmd.linear.x = 0.07
         check = True
-        target_time_1 = rospy.Time.now() + rospy.Duration.from_sec(4.25)
+        target_time_1 = rospy.Time.now() + rospy.Duration.from_sec(3.4)
 
         if check == True:
            while rospy.Time.now() < target_time_1:
@@ -340,9 +339,8 @@ def move_f_1():
 
 
    if param[1] == "forward_4":
-        move_cmd.linear.x = 0.1
+        move_cmd.linear.x = 0.25
         move.publish(move_cmd)
-        rospy.sleep(0.2)
 
 
    if param[1] == "forward_0":
@@ -379,7 +377,6 @@ def start():
 
     rospy.init_node('control_flippers')
     while not rospy.is_shutdown():
-      if nachalo == True:
          if param[2] == "angle_1":
             if param[0] > (-0.5):
                param[0]+=(-0.02)
@@ -411,11 +408,11 @@ def start():
 
          elif param[2] == "angle_4":
             if param[0] > (0):
-               param[0]+=(-0.0075)
+               param[0]+=(-0.008)
 
             if param[0] < (0):
-               param[2] = "angle_0"
                param[1] = "forward_0"
+               move_f_1()
 
 
          rospy.Rate(100).sleep()

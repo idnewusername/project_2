@@ -726,7 +726,7 @@
 
         <!-- stairs -->
 
-        <model name='stairs_very_simple_1'>
+        <!--<model name='stairs_very_simple_1'>
             <pose frame=''>0 0 0 0 0 0</pose>
             <link name='Stairs_3'>
                 <visual name='Stairs_3_Visual_0'>
@@ -1251,7 +1251,7 @@
                 </collision>
             </link>
             <static>1</static>
-        </model>
+        </model>-->
 
     </world>
 </sdf>
