@@ -281,9 +281,9 @@ def move_f_1():
 
    if param[1] == "forward_3":
 
-        move_cmd.linear.x = 0.9
+        move_cmd.linear.x = 1
         check = True
-        target_time_1 = rospy.Time.now() + rospy.Duration.from_sec(5.57)
+        target_time_1 = rospy.Time.now() + rospy.Duration.from_sec(5)
 
         if check == True:
            while rospy.Time.now() < target_time_1:
