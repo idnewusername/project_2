@@ -17,10 +17,10 @@ def start():
     while not rospy.is_shutdown():
 
          if param[2] == "angle_1":
-            if param[0] > (-0.5):
+            if param[0] > (-0.6):
                param[0]+=(-0.02)
 
-            if param[0] < (-0.5):
+            if param[0] < (-0.6):
                   param[2] = "angle_0"
 
          elif param[2] == "angle_0":
@@ -30,7 +30,7 @@ def start():
 
          elif param[2] == "angle_2":
             if param[0] < (0):
-               param[0]+=(0.01)
+               param[0]+=(0.02)
 
             if param[0] > (0):
                param[2] = "angle_0"
@@ -68,7 +68,7 @@ def move_f_1():
 
         move_cmd.linear.x = 1.1
         check = True
-        target_time_1 = rospy.Time.now() + rospy.Duration.from_sec(5.25)
+        target_time_1 = rospy.Time.now() + rospy.Duration.from_sec(5.24)
 
         if check == True:
            while rospy.Time.now() < target_time_1:
