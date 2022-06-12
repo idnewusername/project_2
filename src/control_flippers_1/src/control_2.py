@@ -34,8 +34,22 @@ def start():
 
             if param[0] > (0):
                param[2] = "angle_0"
-               rospy.sleep(0.7)
                param[1] = "forward_3"
+
+         elif param[2] == "angle_3":
+            if param[0] < (1.2):
+               param[0]+=(0.01)
+
+            if param[0] > (1.2):
+               param[2] = "angle_4"
+
+         elif param[2] == "angle_4":
+            if param[0] > (0):
+               param[0]+=(-0.015)
+
+            if param[0] < (0):
+               param[1] = "forward_0"
+               move_f_1()
 
 
          rospy.Rate(100).sleep()
@@ -47,7 +61,7 @@ def move_f_1():
    if param[1] == "forward_1":
          end = True
          move_cmd.linear.x = 0.2
-         target_time = rospy.Time.now() + rospy.Duration.from_sec(3)
+         target_time = rospy.Time.now() + rospy.Duration.from_sec(2.9)
          if end == True:
             while rospy.Time.now() < target_time:
                      move.publish(move_cmd)
@@ -60,30 +74,34 @@ def move_f_1():
 
    if param[1] == "forward_2":
 
-        move_cmd.linear.x = 0.2
+        move_cmd.linear.x = 0.6
         move.publish(move_cmd)
 
 
    if param[1] == "forward_3":
 
-        move_cmd.linear.x = 1.1
+        move_cmd.linear.x = 1.67
         check = True
-        target_time_1 = rospy.Time.now() + rospy.Duration.from_sec(5.24)
-
+        target_time_1 = rospy.Time.now() + rospy.Duration.from_sec(4.212)
+ 
         if check == True:
            while rospy.Time.now() < target_time_1:
                     move.publish(move_cmd)
            else:
                     check = False
+                    param[2] = "angle_3"
 
         if check == False:
-                 param[1] = "forward_0"
+                 param[1] = "forward_4"
 
+
+   if param[1] == "forward_4":
+        move_cmd.linear.x = 0.6
+        move.publish(move_cmd)
 
    if param[1] == "forward_0":
         move_cmd.linear.x = 0
         move.publish(move_cmd)
-
 
 
 
